@@ -1,0 +1,55 @@
+.tagline-animation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+        .initial-container{
+
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .ball{
+                background-color: #D3CEC8;
+                border-radius: 50%;
+                height: 25%;
+                width: 1.2%;
+                border : 1px solid white;
+                margin: 0 1.5% 0 1.5%;
+                transition: transform 0.3s;
+
+                    &.decrease-size{
+                        transform: scale(0);
+                    }
+                }
+            .line-container-tag{
+                width: 16%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: width 0.5s;
+
+                .line{
+                    height: 2px;
+                    background-color: #D3CEC8;
+                    width: 100%;
+                }
+
+                &.remove{
+                    width: 0;
+                }
+            }
+        }
+
+        .tagline{
+            font-size: 70px;
+            font-family: Audrey;
+            color: #D3CEC8;
+            // border : 1px solid white;
+        }
+}
