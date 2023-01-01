@@ -5,7 +5,7 @@ import Header from './Components/Header/header.component';
 
 function App() {
   return (
-    <div className="App">
+    <div className="select-none">
       <Header/>
       <LandingPage/>
     </div>
