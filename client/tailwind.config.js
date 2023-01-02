@@ -15,7 +15,8 @@ module.exports = {
         'logoSize' : "auto 200%",
       },
       height : {
-        '93vh' : '93vh'
+        '93vh' : '93vh',
+        '110vh' : '110vh'
       },
     },
   },

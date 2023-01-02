@@ -1,10 +1,23 @@
 import React from "react";
-import HorizontalLine from "../../Components/horizontal_Scroll-list/horizontal-list.component";
+import MemberCard from "../../Components/member-card/membercard.component";
 
 const MemberSection = () => {
     return(
-        <div className="w-screen h-screen">
-            
+        <div className="w-screen h-screen flex flex-col justify-around">
+            <div className="w-full flex justify-center items-center">
+                <h1 className="font-bold text-5xl">OUR TEAM</h1>
+            </div>
+            <div className="h-5/6 flex flex-wrap justify-around">
+                <MemberCard/>
+                <MemberCard/>
+                <MemberCard/>
+                <MemberCard/>
+                <MemberCard/>
+                <MemberCard/>
+                <MemberCard/>
+                <MemberCard/>
+                <MemberCard/>
+            </div>
         </div>
     );
 }
