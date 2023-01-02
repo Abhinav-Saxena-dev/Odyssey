@@ -12,11 +12,11 @@ const Header = () => {
           </svg>
         </div>
 
-        <div class="hidden sm:flex sm:items-center">
-          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Products</a>
-          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Marketplace</a>
-          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Partners</a>
-          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600">Pricing</a>
+        <div class="hidden w-1/2 flex justify-around sm:flex sm:items-center">
+          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">ACHIEVEMENTS</a>
+          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">SESSIONS</a>
+          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">BLOGS</a>
+          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Recruitment</a>
         </div>
 
         <div class="hidden sm:flex sm:items-center">

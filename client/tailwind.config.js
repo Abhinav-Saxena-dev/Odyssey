@@ -16,7 +16,7 @@ module.exports = {
       },
       height : {
         '93vh' : '93vh'
-      }
+      },
     },
   },
   plugins: [],
