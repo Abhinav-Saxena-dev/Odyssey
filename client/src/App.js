@@ -7,6 +7,7 @@ import Footer from './Components/Footer/footer.component';
 import {Route, Routes} from 'react-router-dom';
 import Achievements from './Pages/Achievements-Page/achievements.component';
 import SessionPage from './Pages/Sessions-page/sessionpage.component';
+import BlogPage from './Pages/Blog/blog.component';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       />
       <Route path = '/achievements' element = {<Achievements/>} />
       <Route path = '/sessions' element = {<SessionPage/>} />
+      <Route path = '/blogs' element = {<BlogPage/>} />
       </Routes>
       <Footer/>
     </div>

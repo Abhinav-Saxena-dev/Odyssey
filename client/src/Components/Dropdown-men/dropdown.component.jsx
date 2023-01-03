@@ -1,17 +1,9 @@
-import { Fragment, useState } from 'react'
+import { Fragment} from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
-const people = [
-  { name: 'SHOW ALL'},
-  { name: 'DATE' },
-  { name: 'SESSION TAG' },
-  { name: 'PRESIDED OVER' },
-  { name: 'SESSION TYPE' },
-]
 
-const DropDown = () => {
-  const [selected, setSelected] = useState(people[0])
+const DropDown = ({options, selected, setSelected}) => {
 
   return (
     <div className="w-64">
@@ -33,7 +25,7 @@ const DropDown = () => {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute mt-1 z-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {people.map((person, personIdx) => (
+              {options.map((person, personIdx) => (
                 <Listbox.Option
                   key={personIdx}
                   className={({ active }) =>
