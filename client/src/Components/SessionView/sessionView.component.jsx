@@ -26,7 +26,7 @@ const SessionView = () => {
           readOnly={true}
           className="w-11/12 h-1/2 font-shadows"
         />
-        <div className="w-11/12 h-[10%]">DETAILS</div>
+        <div className="w-11/12 h-[10%] font-shadows font-bold">WRITTEN BY : </div>
       </div>
     </div>
   );
