@@ -8,6 +8,8 @@ import {Route, Routes} from 'react-router-dom';
 import Achievements from './Pages/Achievements-Page/achievements.component';
 import SessionPage from './Pages/Sessions-page/sessionpage.component';
 import BlogPage from './Pages/Blog/blog.component';
+import SignUp from './Pages/SignUp/signup.component';
+import SignIn from './Pages/SignIn/signin.component';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
       <Route path = '/achievements' element = {<Achievements/>} />
       <Route path = '/sessions' element = {<SessionPage/>} />
       <Route path = '/blogs' element = {<BlogPage/>} />
+      <Route path = '/signup' element = {<SignUp/>} />
+      <Route path = '/signin' element = {<SignIn/>} />
       </Routes>
       <Footer/>
     </div>
