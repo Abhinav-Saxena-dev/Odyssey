@@ -5,6 +5,8 @@ import AboutUs from './Pages/About-us/aboutus.page';
 import MemberSection from './Pages/Members-section/members.component';
 import Footer from './Components/Footer/footer.component';
 import {Route, Routes} from 'react-router-dom';
+import Achievements from './Pages/Achievements-Page/achievements.component';
+import SessionPage from './Pages/Sessions-page/sessionpage.component';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       </div>
       } 
       />
+      <Route path = '/achievements' element = {<Achievements/>} />
+      <Route path = '/sessions' element = {<SessionPage/>} />
       </Routes>
       <Footer/>
     </div>
