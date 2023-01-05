@@ -45,7 +45,7 @@ router.post("/signup", (req, res, next) => {
     );
 });
 
-router.post('/login', (req, res, next) => {
+router.post('/signin', (req, res, next) => {
     
     const {email, password} = req.body
     

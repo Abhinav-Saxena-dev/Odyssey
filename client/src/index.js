@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
 import {BrowserRouter} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import axios from 'axios';
+import store from './redux/store';
 
-let userData =  JSON.parse(localStorage.getItem("userData"))
-    let token
-    if(userData){
-        token= userData.token
-    }
-  
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+let token =  localStorage.getItem("token") ? localStorage.getItem("token") : null
+
+    if(token) axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    
     axios.defaults.headers.post['Content-Type'] = 'application/json';
 
     axios.interceptors.request.use(request => {     
@@ -36,7 +35,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <React.StrictMode>
-    <App />
+    <Provider store = {store}>
+      <App />
+    </Provider>
   </React.StrictMode>
   </BrowserRouter>
 );

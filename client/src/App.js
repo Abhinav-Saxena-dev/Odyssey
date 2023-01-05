@@ -11,7 +11,7 @@ import BlogPage from './Pages/Blog/blog.component';
 import SignUp from './Pages/SignUp/signup.component';
 import SignIn from './Pages/SignIn/signin.component';
 
-function App() {
+const App = () => {
   return (
     <div className="select-none relative">
       <Header/>
