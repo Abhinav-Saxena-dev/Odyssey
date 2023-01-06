@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const baseUrl = "http://localhost:8000/"
+const baseUrl = "http://localhost:8000"
 
 export const registerUser = createAsyncThunk(
     'auth/register', //string action type.
@@ -29,7 +29,11 @@ export const userSignIn = createAsyncThunk(
     async ({email, password}, {rejectWithValue}) => {
         try{
             const {data} = await axios.post(
-                `${baseUrl}/signin`
+                `${baseUrl}/signin`,
+                {
+                    email, 
+                    password,
+                }
             )
             localStorage.setItem('token', data.token)
             return data;

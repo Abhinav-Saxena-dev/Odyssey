@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("./../Models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const checkAuth = require("../Middlewares/check-auth");
 
 const router = express.Router();
 
@@ -83,3 +84,19 @@ router.post('/signin', (req, res, next) => {
       
       })
 })
+
+router.get('/user-profile', checkAuth, async (req, res) => {
+  const {userId} = req.userData;
+  try{
+    const user = await User.findById(userId).select('-password')
+    res.status(200).json({
+      userInfo : user,
+    })
+  }catch(error){
+    res.status(404).json({
+      error : error
+    })
+  }
+})
+
+module.exports = router

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import BlogCard from "../../Components/BlogCard/blogcard.component";
 import DropDown from "../../Components/Dropdown-men/dropdown.component";
 
@@ -11,6 +12,8 @@ const BlogPage = () => {
   ];
 
   const [selected, setSelected] = useState(options[0]);
+
+  const {userInfo} = useSelector(state => state.auth)
 
   return (
     <div className="w-screen h-screen">
@@ -34,6 +37,14 @@ const BlogPage = () => {
             setSelected={setSelected}
           />
         </div>
+        { 
+        userInfo && userInfo.role === 'user' ?
+        <div class="flex space-x-2 justify-center">
+          <button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Button</button>
+        </div>
+        :
+        null
+        }
       </div>
       <div className="w-2/3 h-5/6 overflow-scroll">
         <BlogCard />

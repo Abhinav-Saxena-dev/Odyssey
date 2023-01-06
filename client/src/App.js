@@ -10,10 +10,40 @@ import SessionPage from './Pages/Sessions-page/sessionpage.component';
 import BlogPage from './Pages/Blog/blog.component';
 import SignUp from './Pages/SignUp/signup.component';
 import SignIn from './Pages/SignIn/signin.component';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import AuthApi from './services/authService';
+import { setCredentials } from './redux/authSlice/authSlice';
 
 const App = () => {
+  
+  const [isLoading, setLoading] = useState(true)
+  const {userInfo, token} = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+
+  let data;
+
+  useEffect(() =>{
+    data = AuthApi({token}).then(result => {
+      if(result.data.userInfo){
+        dispatch(setCredentials(result.data.userInfo))
+      }
+      setLoading(false)
+      return result.data.userInfo
+    }).catch(error => {
+      setLoading(false)
+      console.log(error);
+    })
+  }, [data, dispatch])  
+
   return (
     <div className="select-none relative">
+      {
+        isLoading ? 
+        <div className="fixed bg-white bg-opacity-40 h-screen w-screen flex justify-center items-center z-50">
+          <div className="w-20 h-20 border-purple-700 border-t-2 animate-spin rounded-full"></div>
+        </div> : null
+      }
       <Header/>
       <Routes>
       <Route path = '/' element = {

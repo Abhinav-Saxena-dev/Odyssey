@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {Schema} = mongoose
 
 const CommentSchema = new mongoose.Schema({
     userName : {
@@ -20,7 +21,8 @@ const BlogSchema = new mongoose.Schema({
         type : String
     },
     numberOfLikes : {
-        type : Number
+        type : Number,
+        default : 0,
     },
     comments : [CommentSchema],
     isPublished : {
@@ -64,14 +66,22 @@ const UserSchema = new mongoose.Schema({
     ],
     year : {
         type : Number,
+        default : 0,
     },
     department : {
-        type : Number,
+        type : String,
+        default : "",
     },
     isMember : {
         type : Boolean,
+        default : false,
     },
     displayPicture : ImageSchema,
+    role : {
+        type : String,
+        enum : ['user', 'member', 'admin'],
+        default : 'user',
+    }
 })
 
 module.exports = User = mongoose.model('user', UserSchema)

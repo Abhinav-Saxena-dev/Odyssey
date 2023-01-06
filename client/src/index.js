@@ -7,10 +7,6 @@ import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import store from './redux/store';
-
-let token =  localStorage.getItem("token") ? localStorage.getItem("token") : null
-
-    if(token) axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     
     axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -34,11 +30,9 @@ let token =  localStorage.getItem("token") ? localStorage.getItem("token") : nul
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-  <React.StrictMode>
     <Provider store = {store}>
       <App />
     </Provider>
-  </React.StrictMode>
   </BrowserRouter>
 );
 
