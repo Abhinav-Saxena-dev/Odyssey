@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import AuthApi from './services/authService';
 import { setCredentials } from './redux/authSlice/authSlice';
+import UserProfile from './Pages/UserProfile/user-profile.component';
+import CreateBlog from './Pages/Create-Blog/create-blog.component';
 
 const App = () => {
   
@@ -59,6 +61,8 @@ const App = () => {
       <Route path = '/blogs' element = {<BlogPage/>} />
       <Route path = '/signup' element = {<SignUp/>} />
       <Route path = '/signin' element = {<SignIn/>} />
+      <Route path = '/user-profile' element = {<UserProfile/>} />
+      <Route path = '/create-blog' element = {<CreateBlog/>} />
       </Routes>
       <Footer/>
     </div>

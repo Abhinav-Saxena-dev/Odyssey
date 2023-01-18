@@ -7,7 +7,7 @@ const SessionView = () => {
 
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <div count = "01" className="sm:w-1/4 w-11/12 sm:h-[80%] h-[70%] rounded-xl relative
+      <div count = "01" className="sm:w-[38%] w-11/12 sm:h-[80%] h-[70%] rounded-xl relative
                     bg-[url('https://images.unsplash.com/photo-1615800098746-73af8261e3df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80')] 
                     shadow-xl shadow-gray-400 flex items-center flex-col
                     before:content-[attr(count)] before:absolute before:left-[-150px] before:top-20 before:text-8xl before:font-moon

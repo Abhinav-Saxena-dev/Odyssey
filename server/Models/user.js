@@ -13,6 +13,13 @@ const CommentSchema = new mongoose.Schema({
     }
 })
 
+const ImageSchema = new mongoose.Schema({
+    img: {
+        data : Buffer,
+        contentType: String,
+    }
+})
+
 const BlogSchema = new mongoose.Schema({
     blogContent : {
         type : String,
@@ -32,17 +39,11 @@ const BlogSchema = new mongoose.Schema({
     date : {
         type: String,
         default : Date.now,
-    }
+    },
+    blogImage : ImageSchema,
 })
 
 const Blog = mongoose.model('blog', BlogSchema)
-
-const ImageSchema = new mongoose.Schema({
-    img: {
-        data : Buffer,
-        contentType: String,
-    }
-})
 
 const UserSchema = new mongoose.Schema({
     fullName : {

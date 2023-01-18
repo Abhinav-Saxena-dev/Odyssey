@@ -2,7 +2,7 @@ import React from "react";
 
 const BlogCard = () => {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center mb-5">
       <div class="mt-2 cursor-pointer p-4 items-center justify-center w-[680px] rounded-xl group sm:flex space-x-6 bg-white bg-opacity-50 shadow-xl hover:rounded-2xl hover:bg-gray-50">
         <img
           class="mx-auto w-full block w-4/12 h-40 rounded-lg"
