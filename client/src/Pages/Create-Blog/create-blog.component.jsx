@@ -3,36 +3,41 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const CreateBlog = () => {
-  const [blogData, SetBlogData] = useState("");
-  const [title, setTitle] = useState('')
-  const [image, setImage] = useState()
+  const [blogContent, SetBlogContent] = useState("");
+  const [blogTitle, setBlogTitle] = useState('')
+  const [blogImage, setBlogImage] = useState(null)
+  const [blogImageBase64, setBlogImageBase64] = useState()
 
-  const toolbar = [
-    ["bold", "italic", "underline", "strike"],
-    ["blockquote", "code-block"],
+  const handleChange = (e) => {
+    const title = e.target.value
+    setBlogTitle(title)
+  }
 
-    [{ header: 1 }, { header: 2 }],
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }],
-    [{ indent: "-1" }, { indent: "+1" }],
-    [{ direction: "rtl" }],
-    ["link", "image"],
+  const handleBlogImage = (e) => {
+    const image = e.target.files[0]
+    setBlogImage(image)
+    getBase64Img(image);
+  }
 
-    [{ size: ["small", false, "large", "huge"] }],
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  const getBase64Img = (image) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onloadend = () => {
+      setBlogImageBase64(reader.result)
+    }
+  }
 
-    [{ color: [] }, { background: [] }],
-    [{ font: [] }],
-    [{ align: [] }],
+  const handleClick = () => {
+    const blog = {
+      blogContent,
+      blogTitle,
+      blogImage : blogImageBase64,
+    }
+  }
 
-    ["clean"],
-  ];
-
-  return (
-    <div className="w-screen h-[180vh] flex flex-col items-center justify-evenly">
-      <div class="flex justify-center w-2/3 h-[20%]">
-        <label
-          for="dropzone-file"
+  const Dropzone = () => (
+    <label
+          htmlFor="dropzone-file"
           class="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
         >
           <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -59,20 +64,53 @@ const CreateBlog = () => {
               SVG, PNG, JPG or GIF (MAX. 800x400px)
             </p>
           </div>
-          <input id="dropzone-file" type="file" className="hidden" />
+          <input id="dropzone-file" type="file" className="hidden" onChange={handleBlogImage}/>
         </label>
+  );
+
+  const toolbar = [
+    ["bold", "italic", "underline", "strike"],
+    ["blockquote", "code-block"],
+
+    [{ header: 1 }, { header: 2 }],
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ script: "sub" }, { script: "super" }],
+    [{ indent: "-1" }, { indent: "+1" }],
+    [{ direction: "rtl" }],
+    ["link", "image"],
+
+    [{ size: ["small", false, "large", "huge"] }],
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }],
+    [{ font: [] }],
+    [{ align: [] }],
+
+    ["clean"],
+  ];
+
+  return (
+    <div className="w-screen h-[180vh] flex flex-col items-center justify-evenly">
+      <div class="flex justify-center items-center w-2/3 h-[20%]">
+        {
+          !blogImageBase64 ? 
+            <Dropzone/> 
+            :
+            <img src={blogImageBase64} alt = "" className="w-full h-full object-cover"/>
+        }
       </div>
 
       <div className="flex justify-center">
         <div className="mb-3 xl:w-[600px]">
           <label
-            for="exampleFormControlInput1"
+            htmlFor="exampleFormControlInput1"
             className="form-label text-4xl inline-block mb-2 text-gray-700"
           >
             Title
           </label>
           <input
             type="text"
+            name = "title"
             className="
               form-control
               block
@@ -91,7 +129,7 @@ const CreateBlog = () => {
               m-0
               focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
-            id=""
+            onChange={handleChange}
             placeholder="Type the title of your blog Here"
           />
         </div>
@@ -99,15 +137,15 @@ const CreateBlog = () => {
 
       <ReactQuill
         theme="snow"
-        value={blogData}
-        onChange={SetBlogData}
+        value={blogContent}
+        onChange={SetBlogContent}
         modules={{ toolbar }}
-        
+
         className="w-2/3 h-[35%]"
         placeholder="Set size to Huge for best outcome."
       />
 
-      <button type="button" class="inline-block px-6 py-3 bg-blue-600 text-white font-medium text-xs 
+      <button type="button" onClick={handleClick} class="inline-block px-6 py-3 bg-blue-600 text-white font-medium text-xs 
           leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 
           focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition 
           duration-150 ease-in-out">

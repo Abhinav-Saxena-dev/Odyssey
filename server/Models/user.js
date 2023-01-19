@@ -13,13 +13,6 @@ const CommentSchema = new mongoose.Schema({
     }
 })
 
-const ImageSchema = new mongoose.Schema({
-    img: {
-        data : Buffer,
-        contentType: String,
-    }
-})
-
 const BlogSchema = new mongoose.Schema({
     blogContent : {
         type : String,
@@ -40,7 +33,9 @@ const BlogSchema = new mongoose.Schema({
         type: String,
         default : Date.now,
     },
-    blogImage : ImageSchema,
+    blogImage : {
+        type : String,
+    },
 })
 
 const Blog = mongoose.model('blog', BlogSchema)
@@ -77,7 +72,10 @@ const UserSchema = new mongoose.Schema({
         type : Boolean,
         default : false,
     },
-    displayPicture : ImageSchema,
+    displayPicture : {
+        type : String,
+        default : "",
+    },
     role : {
         type : String,
         enum : ['user', 'member', 'admin'],
