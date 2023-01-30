@@ -16,6 +16,7 @@ import AuthApi from './services/authService';
 import { setCredentials } from './redux/authSlice/authSlice';
 import UserProfile from './Pages/UserProfile/user-profile.component';
 import CreateBlog from './Pages/Create-Blog/create-blog.component';
+import PreviewBlog from './Pages/PreviewBlog/previewblog.component';
 
 const App = () => {
   
@@ -63,6 +64,7 @@ const App = () => {
       <Route path = '/signin' element = {<SignIn/>} />
       <Route path = '/user-profile' element = {<UserProfile/>} />
       <Route path = '/create-blog' element = {<CreateBlog/>} />
+      <Route path = '/preview-blog' element = {<PreviewBlog/>} />
       </Routes>
       <Footer/>
     </div>

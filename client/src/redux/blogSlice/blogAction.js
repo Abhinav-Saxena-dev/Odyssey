@@ -2,8 +2,8 @@ import axios from 'axios'
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-export const createBlog = createAsyncThunk(
-    'blog/create',
+export const AddBlog = createAsyncThunk(
+    'blog/add',
 
     async ({blogContent, blogImage, blogTitle}, {rejectWithValue}) => {
         try{
@@ -16,6 +16,6 @@ export const createBlog = createAsyncThunk(
                 comments : [],
                 date : new Date(),
             }
-        }
+        }catch(e){}
     }
 )

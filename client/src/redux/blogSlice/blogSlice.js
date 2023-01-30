@@ -11,5 +11,16 @@ const initialState = {
 const blogSlice = createSlice({
     name : 'blog',
     initialState,
-    reducers : {}
+    reducers : {
+        setCurrentBlog : (state, {payload}) => {
+            state.currentBlog = payload
+        },
+        resetCurrentBlog : (state) => {
+            state.currentBlog = null
+        }
+    }
 })
+
+export const {setCurrentBlog, resetCurrentBlog} = blogSlice.actions
+
+export default blogSlice.reducer;

@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
+import { useEffect } from "react";
+import ReactQuill, { defaultProps } from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { resetCurrentBlog, setCurrentBlog } from "../../redux/blogSlice/blogSlice";
 
 const CreateBlog = () => {
-  const [blogContent, SetBlogContent] = useState("");
-  const [blogTitle, setBlogTitle] = useState('')
+  const {currentBlog} = useSelector(state => state.blog)
+
+  const [blogContent, SetBlogContent] = useState(currentBlog ? currentBlog.blogContent : '');
+  const [blogTitle, setBlogTitle] = useState(currentBlog ? currentBlog.blogTitle : '')
   const [blogImage, setBlogImage] = useState(null)
-  const [blogImageBase64, setBlogImageBase64] = useState()
+  const [blogImageBase64, setBlogImageBase64] = useState(currentBlog ? currentBlog.blogImage : null)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const title = e.target.value
@@ -31,8 +40,22 @@ const CreateBlog = () => {
     const blog = {
       blogContent,
       blogTitle,
-      blogImage : blogImageBase64,
+      blogImage : currentBlog ? currentBlog.blogImage : blogImageBase64,
     }
+
+    if(blogContent === "" || blogTitle === "" || !blog.blogImage){
+
+      Swal.fire({
+        title: "Error",
+        text: "Fill all fields",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return
+    }
+
+    dispatch(setCurrentBlog(blog))
+    navigate('/preview-blog')
   }
 
   const Dropzone = () => (
@@ -79,7 +102,7 @@ const CreateBlog = () => {
     [{ direction: "rtl" }],
     ["link", "image"],
 
-    [{ size: ["small", false, "large", "huge"] }],
+    [{ size: ["huge", "large"]}],
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
     [{ color: [] }, { background: [] }],
@@ -129,6 +152,7 @@ const CreateBlog = () => {
               m-0
               focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
+            value = {blogTitle}
             onChange={handleChange}
             placeholder="Type the title of your blog Here"
           />
